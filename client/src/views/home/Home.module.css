@@ -1,0 +1,37 @@
+.contenedor{
+    border: 2px solid black;
+    width: 80rem;
+    height: 50rem;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: 1fr;
+    gap: 0.5em;
+    /* width: 100%; */
+}
+.contTitulo{
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: auto;
+}
+
+
+.contSelects{
+    /* display: flex;
+    flex-direction: column; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 2px solid rgb(233, 7, 7);
+}
+
+/* 
+
+.Order_Filter{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 6px solid rgb(39, 39, 39);
+} */
+

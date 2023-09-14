@@ -27,13 +27,13 @@ module.exports = (sequelize) => {
       },
       capital: {
         type: DataTypes.STRING,
-        allowNull: false,
-        
+        allowNull: true,
+        defaultValue: 's/n'
       },
       subregion: {
         type: DataTypes.STRING,
-        allowNull: false,
-        
+        allowNull: true,
+        defaultValue: 's/n'
       },
       area: {
         type: DataTypes.INTEGER,
@@ -46,7 +46,14 @@ module.exports = (sequelize) => {
         allowNull: true,//false,
         defaultValue: 0.000
         
-      }
+      },
+      // numeric_id: {
+      //   type: DataTypes.INTEGER,
+      //   autoIncrement: true, 
+      //   allowNull: false,
+      // },
+    },{
+      timestamps: false,
     })
 
 }

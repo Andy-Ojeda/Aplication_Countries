@@ -1,0 +1,7 @@
+.contenedor{
+    background-color: rgb(107, 107, 202);
+    border: 2px solid blue;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr;
+}

@@ -1,4 +1,3 @@
-
 const { Country, Activity } = require('../src/db');
 const { Op } = require('sequelize');
 
