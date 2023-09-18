@@ -1,56 +1,72 @@
-// import React, { useEffect } from 'react';
-// import Cards from '../../components/cards/Cards';
 import Order from '../../components/Order/Order';
 import Searchbar from '../../components/Searchbar/Searchbar';
 import Filter from '../../components/Filter/Filter';
 
 import style from './Home.module.css';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
+import {useDispatch, useSelector} from 'react-redux';   //? useSelector es para mostrar mi estadoGlobal
+import { search_all } from '../../redux/actions/actions';
 import Card from '../../components/card/Card';
 
 function Home() {
-    const [countries, setCountries] = useState([]);
+    // const [countries, setCountries] = useState([]);
     const [page, setPage] = useState(1);
     const [tenCountries, setTenCountries] = useState([]);
+    const [oneCountry, setOneCountry] = useState([]);
+
+    // const [searchPage, setSearchPage] = useState(false);
+    
+    const myCountries = useSelector((state)=>state.myCountries);
+    const searchCountry = useSelector((state)=>state.searchCountry);
+    const views = useSelector((state)=>state.views);
+
+    const dispatch = useDispatch();
+
+    
     
     const handleButton = (event)=>{
         const buttonName = event.target.name;
         switch (buttonName) {
             case 'izq':
                 page>1 && setPage(page-1);
-                // setTenCountries(...tenCountries, countries.slice(page-1, 10*page))
             break;
             case 'der':
                 page<25 && setPage(page+1);
-                // setTenCountries(...tenCountries, countries.slice(page-1, 10*page))
             break;
             default:
                 console.log("NO SE RECONOCE EL BOTÓN");
         }
     }
 
+    //*  Me guardo todos los países en mi estado global "myCountries"
+    useEffect(()=> {
+        dispatch(search_all()); 
+        // setTenCountries(myCountries.slice((page - 1) * 10, page * 10));
+    }, [])
+
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                console.log('Estoy en el useEffect de page!!!!');
-                const response = await axios.get('http://localhost:3001/countries/home');
-                setCountries(response.data);
-            } catch (error) {
-                console.log('Error al obtener los paises...', error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    useEffect(() => {
-        console.log('Estoy en el useEffect de countries!!!!');
-        setTenCountries(countries.slice((page - 1) * 10, page * 10));
-    }, [countries, page]);
+        // if (views === "1") {
+            // const oneCountry = myCountries.find((element)=>{
+            //     return element.name === searchCountry;
+            // })
+        // }
+        setTenCountries(myCountries.slice((page - 1) * 10, page * 10));
+    }, [page, myCountries]);
     
+    useEffect(()=>{
+        if (views === "1") {
+            setOneCountry(myCountries.find((element)=>{
+                return element.name === searchCountry;
+            }))
+        }
+        if (views === "0") {
+            dispatch(search_all());
+        }
+
+    }, [views, searchCountry])
+
     
     return (
     <div className={style.contenedor}>
@@ -58,12 +74,11 @@ function Home() {
         <div>
             <div className={style.contTitulo}>
                 <div><button name='izq' onClick={handleButton}>IZQ</button></div>
-                {/* <h2>Países...{page}</h2> */}
+                {/* Lorem ipsum dolor, sit amet. */}
                     <div className={style.contSelects}>
                         <div className={style.searchBar}>
                             <Searchbar />
                         </div>
-                        
                         <div className={style.contOrder}>
                             <Order />
                         </div>
@@ -78,19 +93,26 @@ function Home() {
 
             <div className={style.grid}>
                 
+
+                {
                 
-                {tenCountries.length > 0 ? (
-                    tenCountries.map((country) => (
-                        <Card key={country.idPais} country={country} />
-                    ))
-                ) : (
-                    'Cargando...'
-                )}
+                views === "0"? (
+                    tenCountries.length > 0 ? (
+                        tenCountries.map((country) => (
+                            <Card key={country.idPais} country={country} />
+                        ))
+                    ) : 'Cargando...'
+                )
+                : oneCountry? (
+                        <Card key={oneCountry.idPais} country={oneCountry} />
+                    ) : 'Cargando...'
+                }
+
+                
+                
             </div>
 
 
-
-            {/* <pre>{JSON.stringify(countries, null, 2)}</pre> */}
         </div>
        
     </div>

@@ -11,7 +11,7 @@ import store from './redux/store.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <Provider store={store}>      Conecto mi store a
+      <Provider store={store}>    {/*  Conecto mi store a  */}
           <BrowserRouter>         {/*   todo mi documento */}
             <App />
           </BrowserRouter>

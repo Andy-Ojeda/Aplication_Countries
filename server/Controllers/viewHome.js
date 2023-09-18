@@ -3,9 +3,8 @@ const { Country } = require('../src/db');
 
 const viewHome = async (req, res)=>{
     try {
-        console.log('Consultando DB');
         const countriesFromDB = await Country.findAll();
-        console.log('Resultados... ', countriesFromDB);
+        console.log('Datos obtenidos de DB');
         res.json(countriesFromDB);
     } catch (error) {
         console.error(error);

@@ -14,7 +14,7 @@ const getCountries = async (req, res) => {
     }   
 
     try {
-        const response = await axios.get(API);  //*   << <<-- AXIOS
+        const response = await axios.get(API);  //?   << <<-- AXIOS
         const apiData = response.data;
        
         console.log("Cantidad en API: ", apiData.length);
