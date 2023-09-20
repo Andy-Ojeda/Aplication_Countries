@@ -4,18 +4,12 @@
     height: 50rem;
 }
 
-.grid{
+
+/* .contTitulo{
     display: grid;
-    grid-template-columns: repeat(5,1fr);
-    grid-template-rows: 1fr;
-    gap: 0.5em;
-    /* width: 100%; */
-}
-.contTitulo{
-    display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
-}
+} */
 
 
 .contSelects{

@@ -1,6 +1,9 @@
 .contenedor{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     background-color: rgb(171, 171, 94);
     border: 2px solid yellow;
 }
+/* .labelContinent{
+    background-color: rgb(226, 99, 99);
+} */

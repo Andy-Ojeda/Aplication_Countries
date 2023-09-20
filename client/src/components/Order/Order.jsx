@@ -6,18 +6,17 @@ import { useDispatch } from 'react-redux';
 
 function Order() {
     const dispatch = useDispatch();
-    const [selectOption, setSelectOption] = useState("");
-    
-    useEffect(()=>{
-      if (selectOption !== ''){   //! Tuve que agregar este IF, sino no andaba. 
-        dispatch(order(selectOption));
-      }
-    },[selectOption])
     
     const handleSelect = (event)=> {
-      // console.log('ALGO', event.target.value);  
-      setSelectOption(event.target.value);
+      try {
+        const value = event.target.value;
+        dispatch(order(value));
+      } catch (error) {
+        console.log('ERROR EN ORDER...', error);
+      }
     }
+  
+      
 
 
   return (

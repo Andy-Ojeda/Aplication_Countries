@@ -27,6 +27,8 @@ function App() {
     
       <Route path='/countries' element={ <Landing /> } />
       <Route path='/countries/home' element={ <Home /> } />
+      <Route path='/countries/home/:id' element={ <Home /> } />
+
       <Route path='/countries/About' element={ <About /> } />
       <Route path='/countries/detail/:id' element={ <Detail /> } />
       <Route path='/countries/form' element={ <Form /> } />

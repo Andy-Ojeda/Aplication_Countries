@@ -1,31 +1,38 @@
 import {FILTER, ORDER, SEARCH, SEARCH_ALL} from './actions/action_types';
-
+// import { useState, useSelector } from 'react';
 //*  ESTADOS GLOBALES
 const initialState = {
-    myCountries:[],     //?  Países buscados
-    searchCountry: '',     //?  Valor buscado
-    views: "0",
-    sorted: "",
+    // myCountries:[],     
+    // searchCountry: '', 
+    // views: "0",
+    // sorted: "",
+    show:[],        //!  LO NUEVO!!!!!!!!!!!!!!
+    order:'',
 }
+
+
+// const myCountries = useSelector((state)=>state.myCountries); //! LO NUEVO !!!!!!!!!!!
+
+//  ESTADOS LOCALES
+// const [all, setAll] = useState([]); //!  Acá guardo todo lo buscado!!
 
 const reducer = (state = initialState, action) =>{
     switch(action.type){    
         case SEARCH_ALL:     //? Si alguien me manda un type: SEARCHALL...
-        // console.log('Estoy en REDUCER!!')
-            return {...state, myCountries: action.payload, views: "0"}; //? ...guardo su payload en el estado global.
-        case SEARCH:
-            console.log('ActionPayload: ', action.payload);
-            // const {textBox} = action.payload;
-            // return {...state, searchCountry: textBox, views: "1"};
-        case ORDER:
-            const {selectOrder} = action.payload;
-            selectOrder === '' && {...state, sorted: ''}
-            selectOrder === 'ascendente' && {...state, sorted: ''}
-            selectOrder === 'descendente' && {...state, sorted: ''}
-            // console.log('LO HICE!!!!!!!!!!!!!!!!!!!', selectOrder)
-            // return {...state, sorted:}
+        // myCountries = action.payload
+        return {...state, show: action.payload}; //? ...guardo su payload en el estado global.
         
-            default:
+        case SEARCH:
+            // console.log('PAYLOAD...', action.payload);
+            return {...state, show: [action.payload]};  //! Tuve que hacerlo string para que me funcione el map del Home
+        
+        case FILTER:
+            return {...state, show: action.payload}
+        
+        case ORDER:
+            return {...state, order: action.payload}
+            
+        default:
             return state;
     }
 

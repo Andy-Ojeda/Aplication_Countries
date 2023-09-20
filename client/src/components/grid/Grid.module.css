@@ -1,0 +1,18 @@
+.grid{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: 1fr;
+    gap: 0.5em;
+    /* width: 100%; */
+}
+.contButtons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+    
+    /* border: 1px solid black; */
+}
+.contButtons button{
+    background-color: orange;
+    margin: 1em;
+}
