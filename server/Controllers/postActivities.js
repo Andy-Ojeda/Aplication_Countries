@@ -10,7 +10,7 @@ const postActivities = async (req, res) => {
     try {
         
         const { countryName, name, difficulty, season } = req.body; //* Recibo País y datos de la nueva actividad
-        // console.log({ countryName, name, difficulty, season });
+        console.log("Datos recibidos...", { countryName, name, difficulty, season });
         
         // console.log('countryName........ ', countryName);
         

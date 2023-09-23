@@ -1,0 +1,13 @@
+.contenedor{
+    border: 2px solid black;
+    width: 80rem;
+    height: 50rem;
+}
+.grid{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: 1fr;
+    justify-content: center;
+    gap: 0.5em;
+    /* width: 100%; */
+}

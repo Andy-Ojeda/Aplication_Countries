@@ -3,6 +3,7 @@
     grid-template-columns: repeat(5,1fr);
     grid-template-rows: 1fr;
     gap: 0.5em;
+    justify-content: center;
     /* width: 100%; */
 }
 .contButtons{

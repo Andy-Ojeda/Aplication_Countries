@@ -12,6 +12,7 @@ import About from './views/about/About';
 import Detail from './views/detail/Detail';
 import Form from './views/form/Form';
 
+
 //? COMPONENTS...
 import Nav from './components/nav/Nav';
 
@@ -30,7 +31,7 @@ function App() {
       <Route path='/countries/home/:id' element={ <Home /> } />
 
       <Route path='/countries/About' element={ <About /> } />
-      <Route path='/countries/detail/:id' element={ <Detail /> } />
+      <Route path='/countries/detail/:idPais' element={ <Detail /> } />
       <Route path='/countries/form' element={ <Form /> } />
     
     </Routes>
