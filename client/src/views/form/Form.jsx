@@ -7,10 +7,12 @@ import axios from 'axios';
 
 function Form() {
 
-  const [textBox, setTextBox] = useState(''); 
+  // const [textBox, setTextBox] = useState(''); 
   const [globalShow, setGlobalShow] = useState([]) 
+  const [paises, setPaises] = useState([]) 
+
   const [formData, setFormData] = useState({  //? Datos a enviar...
-    countryName: '',
+    countryNames: [],
     name: '',
     difficulty: '1',
     season: 'Spring',
@@ -18,10 +20,17 @@ function Form() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (name === 'countryNames') {
+      console.log('OKOK')
+      
+      setPaises([...paises, value])
+    
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
   
   const handleSubmit = async (event) => {
@@ -30,17 +39,15 @@ function Form() {
       const response = await axios.post('http://localhost:3001/countries/activities', formData);
 
       if (response.status === 201) {
-        // La actividad se agregó exitosamente, puedes mostrar un mensaje al usuario
         console.log('Actividad agregada exitosamente');
-        // También puedes reiniciar el formulario si lo deseas
+        //? Reinicio el formulario
         setFormData({
-          countryName: '',
+          countryNames: [],
           name: '',
           difficulty: '',
           season: '',
         });
       } else {
-        // Hubo un error al agregar la actividad, muestra un mensaje de error si lo deseas
         console.error('Error al agregar la actividad');
       }
     } catch (error) {
@@ -54,6 +61,15 @@ function Form() {
   useEffect(()=>{
    setGlobalShow(show)
   },[])
+
+  
+  useEffect(()=>{
+    setFormData({
+      ...formData,
+      countryNames: paises,
+    });
+  },[paises])
+   
   
   useEffect(()=>{
    console.log(formData)
@@ -71,21 +87,35 @@ function Form() {
             </div>
 
             <div className={style.contCountry}>  
-              <label>Where...? </label>
-              <select name="countryName" value={formData.countryName} onChange={handleChange} >
-                <option value="Country Selection">Country Seleccion</option>
+              
+              <select name="countryNames" value={formData.countryNames} onChange={handleChange} size={10} multiple >
                 {
                   show? globalShow.map((pais)=>{
-                    return <option key={pais.idPais} value={pais.name}>{pais.name}</option>
-                    
+                    return <option key={pais.idPais} value={pais.name}> - {pais.name}</option>
                   })
                   : 'Cargando...'
                 }
-
               </select>
+              
+              <div className={style.contList}>
+                <div className={style.contButton}>
+                  <input className={style.button} type="button" value="CLEAR" onClick={()=>setPaises([])}/>
+                </div>
+                <ul>
+                  {
+                    !paises? <h5>Paises seleccionados...</h5>
+                    :
+                    paises.map((pais)=>{
+                      return <li key={pais}>{pais}</li>
+                    })
+                  }
+                </ul>
+              </div>
+
+            
             </div>
             <div className={style.contDificulty}>      
-              <label>Dificulty: </label>
+              <label>Difficulty: </label>
               <select name="difficulty" value={formData.difficulty} onChange={handleChange}>
                 <option value="1">1</option>
                 <option value="2">2</option>

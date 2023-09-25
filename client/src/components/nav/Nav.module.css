@@ -1,4 +1,13 @@
 .contenedor {
     background-color: rgb(250, 218, 113);
     border: 6px solid rgb(255, 180, 4);
+    display: grid;
+    grid-template-columns: 20rem 1fr;
+}
+
+.image{
+    width: 9rem;
+}
+.contTitulo{
+    margin-left: -20rem;
 }

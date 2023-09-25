@@ -12,6 +12,7 @@ function Searchbar() {
 
     const [textBox, setTextBox] = useState("");
     const [axiosDB, setAxiosDB] = useState([]);
+    
     const [selectedOption, setSelectedOption] = useState('country');
 
     const dispatch = useDispatch();
@@ -63,11 +64,6 @@ function Searchbar() {
       } catch (error) {
         console.log('ERROR en SEARCH-BAR!!', error);
       }
-      // setSelectedOption(selectedValue);
-    
-      // if (selectedValue !== 'country') {
-      //   // navigate(`/countries/${selectedValue}`);
-      // }
     
     }
 
@@ -75,15 +71,16 @@ function Searchbar() {
 
   return (
     <div className={style.contenedor}>
-        
-        <input type='text' value={textBox} onChange={(e)=>setTextBox(e.target.value)} />  {/* // Con handleChange incorporado ;) */}
-        <input type="button" value="Search" name='Search' onClick={handleButton} />
-        
-        <input type="button" value="All" name='All' onClick={handleButton} />
+        <div className={style.contSearch}>
+          <input type='text' value={textBox} placeholder='Search by Name' onChange={(e)=>setTextBox(e.target.value)} />  {/* // Con handleChange incorporado ;) */}
+          <input type="button" value="Search" name='Search' onClick={handleButton} />
+          <input type="button" value="All" name='All' onClick={handleButton} />
+        </div>
+
         
         
         <select className={style.selectCountry} name="selectCountry" defaultValue="country" onChange={handleSelect}>
-            <option value="country">All Countries...</option>
+            <option value="country">Select your Country...</option>
 
             <optgroup className={style.labelContinent} label="ASIA">
               
@@ -165,23 +162,6 @@ function Searchbar() {
               }
             </optgroup>
             
-            
-            
-            
-            
-            
-
-
-
-
-
-
-            {/* {
-              axiosDB.length > 0 ? (
-                axiosDB.map((e) => <option key={e.idPais} value={e.idPais}>{e.name}</option>))
-              : <option value='cargando'>cargando...</option>
-              
-            }     */}
         </select>
     
     </div>

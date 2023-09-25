@@ -1,9 +1,15 @@
 .contenedor{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr;
     background-color: rgb(171, 171, 94);
     border: 2px solid yellow;
+    gap: 0.3rem;
 }
 /* .labelContinent{
     background-color: rgb(226, 99, 99);
 } */
+.contSearch{
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 1fr;
+    gap: 0.1rem;
+}

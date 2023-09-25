@@ -1,4 +1,4 @@
-import {FILTER, ORDER, SEARCH, SEARCH_ALL} from './action_types';
+import {FILTER, FILTERACTIVITY, ORDER, SEARCH, SEARCH_ALL} from './action_types';
 import axios from 'axios';
 
 // Desde acá despacho todas las funciones a realizar.
@@ -16,6 +16,24 @@ export const filter = (value) =>{
             
         } catch (error) {
             console.log('Error en FILTER...', error);
+        }
+    }
+
+}
+
+export const filterActivity = (value) =>{
+    return async (dispatch) => {
+        console.log('Esto es un FilterActivity', value);
+        try {
+            const {data} = await axios.get('http://localhost:3001/countries/getall'); //? Traigo todo de mi DB
+
+            const countries1 = data.filter((country1)=>{
+                return country1.Activities[0]?.name;
+            })
+            // console.log('COUNTRIES SON... ', countries1)
+            return dispatch({type:FILTERACTIVITY, payload: countries1}) 
+        } catch (error) {
+            console.log('Error en FILTER ACTIVITIES...', error);
         }
     }
 

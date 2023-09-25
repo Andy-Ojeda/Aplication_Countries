@@ -11,26 +11,42 @@ function Grid({}) {
     const show = useSelector((state)=>state.show);
     const order = useSelector((state)=>state.order);
 
+    const cardsxPage = 10      //!  NUEVO!!
     const [page, setPage] = useState(1);
     const [tenCountries, setTenCountries] = useState([]);    
-
+    const [allCountries, setAllCountries] = useState([]);
 
 
     useEffect(()=>{
-        const ten = show.slice((page-1)*10, page*10);
+        setAllCountries(show);
+        setPage(1)
+    },[show])
+
+
+    useEffect(()=>{
+        // const ten = show.slice((page-1)*10, page*10);
+        const totalPages = Math.ceil(allCountries.length / cardsxPage);
+        const startId = (page - 1) * cardsxPage;
+        const endId = startId + cardsxPage;
+        let displayCountries = allCountries.slice(startId, endId);
+
+        
         if (order.value === 'descendente') {
-            const ordenDes = ten.sort((a,b)=> b.name.localeCompare(a.name));
-            setTenCountries(ordenDes);
+            displayCountries = displayCountries.sort((a,b)=> b.name.localeCompare(a.name));
+            // const ordenDes = ten.sort((a,b)=> b.name.localeCompare(a.name));
+            // setTenCountries(ordenDes);
         }
         else if (order.value === 'ascendente') {
-            const ordenAsc= ten.sort((a,b)=> a.name.localeCompare(b.name));
-            setTenCountries(ordenAsc)
+            displayCountries = displayCountries.sort((a,b)=> a.name.localeCompare(b.name));
+            // const ordenAsc= ten.sort((a,b)=> a.name.localeCompare(b.name));
+            // setTenCountries(ordenAsc)
         }
-        else {
-            setTenCountries(ten)
-        }
-        
-    },[show, page, order])
+        // else {
+        //     setTenCountries(ten)
+        // }
+        setTenCountries(displayCountries);
+
+    },[allCountries, page, order])
 
 
     const handleButton = (event) =>{
@@ -56,8 +72,8 @@ function Grid({}) {
         {/* <h3>{order.value}</h3> */}
         {/* <h3>{page}</h3> */}
         <div className={style.contButtons}>
-            <button name='izq' onClick={handleButton}>⏪IZQ</button>
-            <button name='der' onClick={handleButton}>DER⏩</button>
+            <button name='izq' onClick={handleButton} disabled={page===1} >⏪IZQ</button>
+            <button name='der' onClick={handleButton} disabled={page===Math.ceil(allCountries.length / cardsxPage)} >DER⏩</button>
         </div>
         <div className={style.grid}>
             {

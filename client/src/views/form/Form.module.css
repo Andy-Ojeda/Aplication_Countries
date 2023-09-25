@@ -1,5 +1,62 @@
 .contenedor{
     border: 2px solid black;
+    background-color: rgb(202, 164, 237);
     width: 80rem;
-    height: 50rem;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.contTextBox{
+    background-color: rgb(240, 130, 130);
+    margin-top: 1rem;
+    /* margin-bottom: 1rem; */
+}
+
+.contCountry{
+    margin-top: 1rem;
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: 30rem 30rem;
+    gap: 1rem;
+    /* width: 50rem; */
+    /* background-color: rgb(78, 129, 225); */
+    justify-content: center;
+    /* margin-left: 7rem;
+    margin-right: 7rem; */
+}
+.contList{
+    background-color: rgb(235, 192, 113);
+    border: 1px solid black;
+}
+.contList ul{
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    min-height: 10rem;
+    height: auto;
+margin-top: 0;
+margin-bottom: 0;
+    list-style: none;
+}
+.contButton{
+
+    display: flex;
+    width: 29.9rem;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: red;
+justify-content: start;
+}
+.contDificulty{
+    margin-top: 1rem;
+}
+.contSeason{
+    margin-top: 1rem;
+    
+}
+.contSend{
+    margin-top: 1rem;
+
 }

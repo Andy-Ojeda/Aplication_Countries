@@ -1,4 +1,4 @@
-import {FILTER, ORDER, SEARCH, SEARCH_ALL} from './actions/action_types';
+import {FILTER, FILTERACTIVITY, ORDER, SEARCH, SEARCH_ALL} from './actions/action_types';
 // import { useState, useSelector } from 'react';
 //*  ESTADOS GLOBALES
 const initialState = {
@@ -27,6 +27,9 @@ const reducer = (state = initialState, action) =>{
             return {...state, show: [action.payload]};  //! Tuve que hacerlo string para que me funcione el map del Home
         
         case FILTER:
+            return {...state, show: action.payload}
+        
+        case FILTERACTIVITY:
             return {...state, show: action.payload}
         
         case ORDER:
