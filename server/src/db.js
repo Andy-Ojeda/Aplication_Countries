@@ -1,8 +1,8 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
-const activity = require('./models/Activity');
-const country = require('./models/Country');
+// const activity = require('./models/Activity');
+// const country = require('./models/Country');
  
 const fs = require('fs');
 const path = require('path');
@@ -16,25 +16,6 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 sequelize.authenticate()
 .then(() => {console.log("DB Connection is OKOK")})
 .catch((error) => {console.log("Fallo DB: ", error.message)})
-
-// (async ()=> {
-//   try {
-//     await sequelize.authenticate();
-//     console.log("DB Connection is OK");
-//   } catch (error) {
-//     console.log("Fallo DB: ", error.message);
-//   }
-  
-// })();
-
-
-
-
-
-
-
-
-
 
 
 const basename = path.basename(__filename);
@@ -58,8 +39,6 @@ const { Activity, Country } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-// activity(sequelize);
-// country(sequelize);
 
 Activity.belongsToMany(Country, {through: 'activity_country'});
 Country.belongsToMany(Activity, {through: 'activity_country'});

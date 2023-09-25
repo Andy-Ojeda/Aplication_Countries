@@ -8,18 +8,21 @@ const getCountriesById = require('../../Controllers/getCountriesById');
 const postActivities = require('../../Controllers/postActivities')
 const viewHome = require('../../Controllers/viewHome');
 
+const getCountriesActivities = require('../../Controllers/getCountriesActivities');
+
 
 
 
 //? Cuando me hacen una Petición de tipo GET...
-// console.log("Estoy en ROUTES!!");
-// router.get("/", getCountries); 
+
 router.get("/countries", getCountries); 
 router.get("/countries/home", viewHome); 
-router.get("/countries/:idPais", getCountriesById);
-router.post("/countries/activities", postActivities);
-router.get("/countries/activities/:idPais", getActivities);
 
+router.get("/countries/getall", getCountriesActivities);
+
+router.post("/countries/activities", postActivities);
+router.get("/countries/:idPais", getCountriesById);
+router.get("/countries/activities/:idPais", getActivities);
 
 
 

@@ -13,7 +13,7 @@ const getActivities = async (req, res) => {
         });
     
         if (!country) {
-          return res.status(404).json({ error: 'País no encontrado' });
+          return res.status(404).json({ error: 'En getActivities.js - País no encontrado' });
         }
     
         const activities = country.Activities; // Esto te dará todas las actividades asociadas al país

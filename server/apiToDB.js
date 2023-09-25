@@ -1,5 +1,5 @@
-// const Country = require('./src/models/Country');
-const {Country} = require("./src/db")
+const axios = require('axios');
+const {Country, Activity} = require("./src/db")
 
 const apiToDB = async (apiData)=> {
     

@@ -10,7 +10,7 @@ const getCountriesById = async (req, res) => {
     try {
         const country = await Country.findByPk(id);
         if (!country){
-            return res.status(404).json({error: 'País no encontrado!!'});
+            return res.status(404).json({error: 'Error en getCountriesById.js - País no encontrado!!'});
         }
         res.json(country);
         

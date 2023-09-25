@@ -8,24 +8,29 @@ const { Country } = require('../src/db');
 const postActivities = async (req, res) => {
     
     try {
-        
-        const { countryName, name, difficulty, season } = req.body; //* Recibo País y datos de la nueva actividad
-        console.log("Datos recibidos...", { countryName, name, difficulty, season });
-        
-        // console.log('countryName........ ', countryName);
-        
-        const country = await Country.findOne({where: {name: countryName}});    //* Busco el país por su Nombre y lo guardo
-        // console.log('PAIS........ ', country);
-        // return res.status(202).json(country);
+        console.log('PEPITO...', req.body);
 
-        if (!country) { 
-            return res.status(404).json({error: 'País no encontrado!!'});
-        }
+        const { countryNames, name, difficulty, season } = req.body; //* Recibo País y datos de la nueva actividad
 
-        const activity = await Activity.create({name, difficulty, season}); //* Creo la actividad
-        await country.addActivity(activity);    //* Asocio la actividad con el país
+        
+        const countries = await Promise.all(countryNames.map(async (pais)=>{
+            const p = await Country.findOne({where: {name: pais}});    //* Busco el país por su Nombre y lo guardo
+            
+            if (!p) { 
+                return res.status(404).json({error: 'País no encontrado!!'});
+            }
 
-        return res.status(201).json({ message: 'Actividad agregada al país exitosamente' });
+            const activity = await Activity.create({name, difficulty, season}); //* Creo la actividad
+            
+            await p.addActivity(activity);    //* Asocio la actividad con el país
+        }))
+
+        return res.status(201).json({ message: 'Actividad/es agregada/s al país exitosamente' });
+        
+        
+        
+
+
   
 
 
