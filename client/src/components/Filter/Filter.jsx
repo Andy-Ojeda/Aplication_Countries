@@ -66,7 +66,7 @@ function Filter() {
     
     <div className={style.contenedor}>
         
-        <select name="filter" value={selectedValue} onChange={handlerSelect}>
+        <select className={style.selectFilter} name="filter" value={selectedValue} onChange={handlerSelect}>
             <option value="filter">🌎Continent Filter...</option>
             <option value="North America">North America</option>
             <option value="South America">South America</option>
@@ -76,7 +76,7 @@ function Filter() {
             <option value="Oceania">Oceania</option>
         </select>
         
-        <select name="filterActivity" value={selectedActivity} onChange={handlerActivity}>
+        <select className={style.selectFilter} name="filterActivity" value={selectedActivity} onChange={handlerActivity}>
             <option value="filterActivity">⚽Activity Filter...</option>
             
             {

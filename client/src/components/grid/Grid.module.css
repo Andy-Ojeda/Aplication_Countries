@@ -1,5 +1,6 @@
 .grid{
     display: grid;
+    /* background-color: brown; */
     grid-template-columns: repeat(5,1fr);
     grid-template-rows: 1fr;
     gap: 0.5em;
@@ -17,3 +18,10 @@
     background-color: orange;
     margin: 1em;
 }
+.centeredCard {
+    /* background-color: pink; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }

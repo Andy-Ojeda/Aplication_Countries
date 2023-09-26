@@ -1,13 +1,15 @@
 .contenedor{
-    border: 2px solid black;
+    margin-top: 1rem;
+    /* border: 2px solid black; */
     width: 80rem;
     height: 50rem;
+    display: flex;
+    justify-content: center;
 }
-.grid{
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-    grid-template-rows: 1fr;
+/* .grid{
+    display: flex;
+    
     justify-content: center;
     gap: 0.5em;
-    /* width: 100%; */
-}
+    
+} */

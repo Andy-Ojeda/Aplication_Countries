@@ -26,11 +26,11 @@ function Detail() {
     return (
         <div className={style.contenedor}>
         
-          <div className={style.grid}>
+          {/* <div className={style.grid}> */}
         
             <Card key={country.idPais} country={country} />
         
-          </div>
+          {/* </div> */}
         
         </div>
     )

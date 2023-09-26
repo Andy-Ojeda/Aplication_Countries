@@ -71,19 +71,17 @@ function Searchbar() {
 
   return (
     <div className={style.contenedor}>
+        
         <div className={style.contSearch}>
-          <input type='text' value={textBox} placeholder='Search by Name' onChange={(e)=>setTextBox(e.target.value)} />  {/* // Con handleChange incorporado ;) */}
-          <input type="button" value="Search" name='Search' onClick={handleButton} />
-          <input type="button" value="All" name='All' onClick={handleButton} />
+          <input type='text' value={textBox}  className={style.input} pattern="\d+" placeholder='Search by Name' onChange={(e)=>setTextBox(e.target.value)} />  {/* // Con handleChange incorporado ;) */}
+          <input type="button" value="Search" className={style.button} name='Search' onClick={handleButton} />
+          <input type="button" value="All / Reset" className={style.button} name='All' onClick={handleButton} />
         </div>
 
-        
-        
         <select className={style.selectCountry} name="selectCountry" defaultValue="country" onChange={handleSelect}>
             <option value="country">Select your Country...</option>
 
             <optgroup className={style.labelContinent} label="ASIA">
-              
               {
                 axiosDB.length > 0 ? (
                   axiosDB

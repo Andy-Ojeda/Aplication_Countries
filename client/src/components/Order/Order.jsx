@@ -22,10 +22,13 @@ function Order() {
   return (
     <div className={style.contenedor}>
         
-        <select name="order" defaultValue="order" onChange={handleSelect}>
+        <select className={style.selectOrder} name="order" defaultValue="order" onChange={handleSelect}>
             <option value="order">Order...</option>
             <option value="ascendente">Ascendente</option>
             <option value="descendente">Descendente</option>
+            <option value="poblacion_asc">Población Ascendente</option>
+            <option value="poblacion_desc">Población Descendente</option>
+ 
         </select>
             
     </div>

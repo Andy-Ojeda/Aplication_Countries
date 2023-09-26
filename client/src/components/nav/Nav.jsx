@@ -8,28 +8,43 @@ function Nav() {
 
   return (
     <div className={style.contenedor}>
-          <Link to={'/countries'}>
-      <div className={style.logo}>
-              <img className={style.image} src={image} alt="Logo"/>
-      </div>
-          </Link>
-      <div className={style.contTitulo}>
-          <h2>Countries App</h2>
           
-          <Link to={'/countries'}>
-            <input type="button" value="INICIO" />
-          </Link>
+          <div className={style.logo}>
+            <Link to={'/countries'}>
+              {/* <button className={style.buttonLogo}> */}
+                      <img className={style.image} src={image} alt="Logo"/>
+              {/* </button> */}
+            </Link>
+          </div>
           
-          <Link to={'/countries/home'}>
-            <input type="button" value="HOME" />
-          </Link>
-          <Link to={'/countries/about'}>
-            <input type="button" value="ABOUT" />
-          </Link>
-          <Link to={'/countries/form'}>
-            <input type="button" value="NEW Activity" />
-          </Link>
-      </div>  
+          <div className={style.contiene}>
+              <div className={style.contTitulo}>
+                  <label className={style.titulo}>Countries App</label>
+              </div>    
+              <div className={style.contButtons}>
+                  {/* <Link to={'/countries'}>
+                    <input type="button" value="INICIO" />
+                  </Link> */}
+                  
+                  <Link to={'/countries/home'}>
+                    {/* <div className={style.button}>
+                      <input type="button" value="HOME" />
+                    </div> */}
+                    <button className={style.button}>HOME</button>
+                  </Link>
+                  <Link to={'/countries/about'}>
+                    {/* <input type="button" value="ABOUT" /> */}
+                    <button className={style.button}>ABOUT</button>
+                  </Link>
+                  <Link to={'/countries/form'}>
+                    {/* <input type="button" value="NEW Activity" /> */}
+                    <button className={style.button}>New Activity</button>
+                  </Link>
+              </div>
+          </div>  
+          <div>
+            
+          </div>
     </div>
   )
 }
