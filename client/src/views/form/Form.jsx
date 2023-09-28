@@ -6,60 +6,81 @@ import axios from 'axios';
 
 
 function Form() {
-
+  
   // const [textBox, setTextBox] = useState(''); 
   const [globalShow, setGlobalShow] = useState([]) 
   const [paises, setPaises] = useState([]) 
+  const [error, setError] = useState("");
+  const [errorP, setErrorP] = useState("");
+  
+  const show = useSelector((state)=>state.show);
 
   const [formData, setFormData] = useState({  //? Datos a enviar...
     countryNames: [],
     name: '',
     difficulty: '1',
+    // algo: 'pepito',
     season: 'Spring',
+
   });
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    if (name === 'countryNames') {
-      console.log('OKOK')
+      const { name, value } = event.target;
+
+      value && setError("");
+      if (name === 'countryNames') {
+        
+        setPaises([...paises, value])
       
-      setPaises([...paises, value])
-    
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
+      } else {
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      }
   };
   
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:3001/countries/activities', formData);
-
-      if (response.status === 201) {
-        console.log('Actividad agregada exitosamente');
-        //? Reinicio el formulario
-        setFormData({
-          countryNames: [],
-          name: '',
-          difficulty: '',
-          season: '',
-        });
-      } else {
-        console.error('Error al agregar la actividad');
+      event.preventDefault();
+      // console.log('formDATA...', formData)
+      if (!formData.name) {
+        setError("Please enter an activity name.");
+        return; 
       }
-    } catch (error) {
-      console.error('Error al enviar la solicitud:', error);
-    }
-  };
+      
+      if (paises.length === 0) {
+        setErrorP("Please select a Country.");
+        return; 
+      }
+     
+
+      try {
+        const response = await axios.post('http://localhost:3001/countries/activities', formData);
+
+        if (response.status === 201) {
+          window.alert('Actividad agregada exitosamente');
+          //? Reinicio el formulario
+         
+          setFormData({
+            countryNames: [],
+            name: '',
+            difficulty: '',
+            season: '',
+          });
+        } else {
+          console.error('Error al agregar la actividad');
+        }
+      } catch (error) {
+        console.error('Error al enviar la solicitud:', error);
+      }
+};
 
 
-  const show = useSelector((state)=>state.show);
   
   useEffect(()=>{
    setGlobalShow(show)
+   console.log('formDataINICIO...', formData);
+
   },[])
 
   
@@ -68,48 +89,54 @@ function Form() {
       ...formData,
       countryNames: paises,
     });
+    if (paises.length !== 0){
+      setErrorP("");
+    }
   },[paises])
    
   
-  useEffect(()=>{
-   console.log(formData)
-  },[formData])
   
   return (
     <div className={style.contenedor}>
-      <h2>ADD a new Activity</h2>
+      <h2>ADD new Activity</h2>
       
       <div className={style.contForm}>
         <form onSubmit={handleSubmit}>
             <div className={style.contTextBox}>
               <label>Activity: </label>
               <input type="text" name='name' value={formData.name} placeholder='New activity...' onChange={handleChange}/>
+              {error ? <p className={style.error}>{error}</p> : <p></p>}
             </div>
 
             <div className={style.contCountry}>  
               
               <select name="countryNames" value={formData.countryNames} onChange={handleChange} size={10} multiple >
                 {
-                  show? globalShow.map((pais)=>{
-                    return <option key={pais.idPais} value={pais.name}> - {pais.name}</option>
-                  })
-                  : 'Cargando...'
-                }
+                      show? globalShow.map((pais)=>{
+                        return <option key={pais.idPais} value={pais.name}> - {pais.name}</option>
+                      })
+                      : 'Cargando...'
+                    }
               </select>
               
               <div className={style.contList}>
-                <div className={style.contButton}>
-                  <input className={style.button} type="button" value="CLEAR" onClick={()=>setPaises([])}/>
-                </div>
-                <ul>
-                  {
-                    !paises? <h5>Paises seleccionados...</h5>
-                    :
-                    paises.map((pais)=>{
-                      return <li key={pais}>{pais}</li>
-                    })
-                  }
-                </ul>
+                    <div className={style.contButton}>
+                          <input className={style.button} type="button" value="CLEAR" onClick={()=>setPaises([])}/>
+                    </div>
+                    <div>
+                      
+                        {
+                              paises.length === 0? <h5>Paises seleccionados...</h5>
+                              :
+                              <ul>
+                                  { paises.map((pais)=>{
+                                      return <li key={pais}>{pais}</li>
+                                    })
+                                  }
+                              </ul>
+                        }
+                        {errorP ? <p className={style.error}>{errorP}</p> : <p></p>}
+                    </div>
               </div>
 
             

@@ -2,12 +2,13 @@
 
 #root {
   max-width: 1280px;
+  height: auto;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-/* background-color: #FFAF19; */
-background-color: var(--color1);
-
+  /* background-color: #FFAF19; */
+  background-color: var(--color1);
+  
 }
 
 

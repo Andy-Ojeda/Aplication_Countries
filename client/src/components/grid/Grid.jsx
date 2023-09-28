@@ -13,19 +13,22 @@ function Grid({}) {
 
     const cardsxPage = 10      //!  NUEVO!!
     const [page, setPage] = useState(1);
+    const [pageTotal, setpageTotal] = useState(1);
     const [tenCountries, setTenCountries] = useState([]);    
     const [allCountries, setAllCountries] = useState([]);
+    
 
 
     useEffect(()=>{
         setAllCountries(show);
         setPage(1)
+        show.length===1 ? setpageTotal(1) : setpageTotal(show.length / cardsxPage);
     },[show])
 
 
     useEffect(()=>{
-        const startId = (page - 1) * cardsxPage;
-        const endId = startId + cardsxPage;
+        const startId = (page - 1) * cardsxPage;    // 0  11  21  31
+        const endId = startId + cardsxPage;         // 10 20  30  40
         // let displayCountries = allCountries.slice(startId, endId);
         let displayCountries = show;
 
@@ -66,6 +69,7 @@ function Grid({}) {
     <div>
         <div className={style.contButtons}>
             <button name='izq' onClick={handleButton} disabled={page===1} >⏪IZQ</button>
+            <label className={style.cantidadPages}>Página {page} de {pageTotal}</label>
             <button name='der' onClick={handleButton} disabled={page===Math.ceil(allCountries.length / cardsxPage)} >DER⏩</button>
         </div>
         <div className={style.contGrid}>

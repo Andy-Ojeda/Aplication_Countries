@@ -1,3 +1,5 @@
+@import '../../colors.module.css';
+
 .grid{
     display: grid;
     /* background-color: brown; */
@@ -9,11 +11,17 @@
 }
 .contButtons{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 0.6fr 1.2fr;
     gap: 0.5em;
     
     /* border: 1px solid black; */
 }
+.cantidadPages {
+    margin-top: 1.5rem;
+    color: var(--color4);
+    
+}
+
 .contButtons button{
     background-color: orange;
     margin: 1em;

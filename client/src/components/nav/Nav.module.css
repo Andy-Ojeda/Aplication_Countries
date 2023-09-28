@@ -56,7 +56,7 @@
     width: 9rem;
     /* margin: -1rem -1.5rem ; */
     transition: all 0.4s ;
-    animation: rotate 200s linear infinite; /* Nombre de la animación, duración, temporización y repetición */
+    animation: rotate 50s linear infinite; /* Nombre de la animación, duración, temporización y repetición */
   
 }
 .image:hover {

@@ -41,19 +41,13 @@ function Filter() {
         const {data} = await axios.get('http://localhost:3001/countries/getAll'); //? Traigo todo de mi DB
         
         setAxiosDB(data);
-        
-        // const withActivities = await data.filter((e)=> e.Activities[0])
         //! Esto fue googleado!! \/
         const uniqueActivities = [...new Set(data.flatMap((e) => e.Activities.map((activity) => activity.name)))];
 
         setActivities(uniqueActivities);
-        // const algo = await axiosDB[0].Activities[0].name    //! voley
-
-        // console.log('PEPElePU...', uniqueActivities)
         
-
       } catch (error) {
-        console.log('Error en FILTER...', error);
+        window.alert('Error en FILTER...', error);
       }
     }  
     fetchData();

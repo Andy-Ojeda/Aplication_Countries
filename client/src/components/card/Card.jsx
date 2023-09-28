@@ -4,14 +4,19 @@ import {Link} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 
-function Card({country}) {
+function Card({country, activities}) {
   // console.log('DATOS>>> ', country)
   const {idPais} = useParams();
+
+console.log('CARD-ACTIVITIES...', activities)
+
+
   
   return (
-        <div className= {idPais ? style.pepito : style.card}>
+    <div className= {idPais ? style.pepito : style.card}>
           <div className={idPais ? style.pepito1 : style.card2}>
               
+          <div className={style.cont}>
               <div className= {idPais ? style.contenedor1 : style.contenedor}>
                   
                   <Link to={`/countries/detail/${country.idPais}`}> 
@@ -26,12 +31,34 @@ function Card({country}) {
                     {idPais && <h4>Subregion: {country.subregion}</h4>}
                     {idPais? <h4>Population: {country.population}</h4> : <h5>-{country.population}-</h5>}
                     {idPais && <h4>Area: {country.area}</h4>}
+
+                    
                     
                   </Link>
               
               </div>
-          </div>
+          <div className={style.contenedor2}>
+                    {idPais ? 
+                      activities.map((act, id)=>(
+                        <div key={id} className={style.activity}>
+                            {/* <h5 id={id}>-------------------</h5> */}
+                            <h2>- Activity {id+1}-</h2>
+                            <h4>Name: {act.name}</h4>
+                            <h4>Difficulty: {act.difficulty}</h4>
+                            <h4>Season: {act.season}</h4>
+                            <br/>
+                        </div>
+
+
+
+))
+:
+<h5>==========================</h5>
+                    }
+            </div>
         </div>
+                    </div>
+    </div>
   )
 }
 

@@ -1,5 +1,10 @@
 @import '../../colors.module.css';
 
+
+.cont{
+    display: flex;
+    flex-direction: row;
+}
 .contenedor{
     /* background-color: rgb(114, 176, 114);
     border: 2px solid green;
@@ -9,6 +14,14 @@
 .contenedor1 {
     width: 20rem;
     background-color: var(--color20);
+}
+.contenedor2 {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    /* background-color: var(--color20); */
+    margin-left: 1rem;
+    justify-content: space-between;
 }
 img{
     /* border-radius: 10%; */
@@ -23,6 +36,21 @@ img{
     margin-top: -1rem;
     /* background-color: rgb(68, 224, 94); */
 }
+
+.activity {
+    background-color: var(--color20);
+    display: grid;
+    grid-template-columns: 10rem;
+    /* gap: 1rem; */
+    /* display: flex;
+    flex-direction: column; */
+    justify-content: center;
+    /* margin-top: 1rem; */
+}
+.activity h4 {
+    margin-top: 0;
+}
+
 
 /* --------------------------------------- */
 

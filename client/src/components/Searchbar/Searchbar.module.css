@@ -44,7 +44,7 @@
   }
   
   .input:focus {
-    color: var(--color3); /*rgb(0, 255, 255); */
+    color: var(--color1); /*rgb(0, 255, 255); */
     background-color: var(--color4);
     outline-color: var(--color3); /* rgb(0, 255, 255);*/
     box-shadow: -3px 0px 7px var(--color3);
