@@ -1,19 +1,42 @@
 import React from 'react';
 import style from './Order.module.css';
 import { useState, useEffect } from 'react';
-import { order } from '../../redux/actions/actions';
-import { useDispatch } from 'react-redux';
+import { order as orderAction, search_all } from '../../redux/actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Order() {
     const dispatch = useDispatch();
+
+    const reset = useSelector((state)=>state.reset);  
+    const orderState = useSelector((state)=>state.order);  
+  
+  
+    const [selectedValue, setSelectedValue] = useState('order');
+
+    useEffect(()=>{
+      setSelectedValue('order');
+    }, [reset])
+  
+    useEffect(()=>{
+      
+        console.log('SelectedValue es...', selectedValue)
+    //     if (selectedValue === 'order') {
+    //       console.log('dispacho searchALL')
+    //       dispatch(search_all())
+    //     }
+    //     else {
+    //       console.log('dispacho ORDER')
+    //       dispatch(orderAction(selectedValue));
+    //     }
+      
+    }, [selectedValue])
     
     const handleSelect = (event)=> {
-      try {
-        const value = event.target.value;
-        dispatch(order(value));
-      } catch (error) {
-        console.log('ERROR EN ORDER...', error);
-      }
+      const value = event.target.value;
+      console.log('Order - ', value);
+      setSelectedValue(value)
+
+      dispatch(orderAction(value));
     }
   
       
@@ -22,7 +45,7 @@ function Order() {
   return (
     <div className={style.contenedor}>
         
-        <select className={style.selectOrder} name="order" defaultValue="order" onChange={handleSelect}>
+        <select className={style.selectOrder} name="order" value={selectedValue} onChange={handleSelect}>
             <option value="order">Order...</option>
             <option value="ascendente">Ascendente</option>
             <option value="descendente">Descendente</option>
@@ -30,6 +53,7 @@ function Order() {
             <option value="poblacion_desc">Población Descendente</option>
  
         </select>
+        <div>Order es...{orderState.value}</div>
             
     </div>
   )

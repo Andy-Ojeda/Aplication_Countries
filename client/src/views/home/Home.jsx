@@ -8,7 +8,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {useDispatch, useSelector} from 'react-redux';   //? useSelector es para mostrar mi estadoGlobal
-import { searchID, search_all } from '../../redux/actions/actions';
+import { searchID, search_all, inicioApp } from '../../redux/actions/actions.js';
+
 import Card from '../../components/card/Card';
 
 function Home() {
@@ -34,6 +35,7 @@ function Home() {
     //*  Me guardo todos los países en mi estado global "myCountries"
     useEffect(()=> {
         dispatch(search_all()); 
+        dispatch(inicioApp(show));
     }, [])
 
 

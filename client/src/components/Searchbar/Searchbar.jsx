@@ -1,15 +1,16 @@
 import React from 'react';
 import style from './Searchbar.module.css';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 // import { useHistory } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import { search, search_all } from '../../redux/actions/actions';
+import { search, search_all, reset_all } from '../../redux/actions/actions';
 
 function Searchbar() {
-
+  
+  
     const [textBox, setTextBox] = useState("");
     const [axiosDB, setAxiosDB] = useState([]);
     
@@ -24,6 +25,7 @@ function Searchbar() {
       switch (buttonName) {
         case 'All':
           dispatch(search_all());  
+          dispatch(reset_all());
         break;
         case 'Search':
             if (!textBox) {
@@ -37,7 +39,7 @@ function Searchbar() {
             
       }
     }
-
+    
     useEffect(()=>{
       async function fetchData(){
         try {
@@ -66,7 +68,6 @@ function Searchbar() {
       }
     
     }
-
 
 
   return (

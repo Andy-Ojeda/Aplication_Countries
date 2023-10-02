@@ -26,7 +26,7 @@ function Filter() {
   
   const handlerActivity = (event) => {
     const activity = event.target.value;
-    // console.log(activity);
+    console.log('FILLL...', activity);
     setSelectedActivity(activity);
     activity === 'filterActivity'? dispatch(search_all()) : dispatch(filterActivity(activity));
   }
@@ -38,7 +38,7 @@ function Filter() {
   useEffect(()=>{
     async function fetchData(){
       try {
-        const {data} = await axios.get('http://localhost:3001/countries/getAll'); //? Traigo todo de mi DB
+        const {data} = await axios.get('http://localhost:3001/countries/getAll'); //? Traigo TODO TODO de mi DB
         
         setAxiosDB(data);
         //! Esto fue googleado!! \/
@@ -47,7 +47,7 @@ function Filter() {
         setActivities(uniqueActivities);
         
       } catch (error) {
-        window.alert('Error en FILTER...', error);
+        window.alert('Error en FILTER...', error.message);
       }
     }  
     fetchData();

@@ -1,7 +1,20 @@
-import {FILTER, FILTERACTIVITY, ORDER, SEARCH, SEARCH_ALL} from './action_types';
+import {FILTER, FILTERACTIVITY, ORDER, SEARCH, SEARCH_ALL, RESET, INICIANDO} from './action_types';
 import axios from 'axios';
 
 // Desde acá despacho todas las funciones a realizar.
+
+export const inicioApp = (value) =>{
+    return async (dispatch) => {
+        try {
+            return dispatch({type:INICIANDO, payload: value}); 
+            
+        } catch (error) {
+            window.alert('ERROR en action - INICIO_APP...', error.message);
+        }
+         
+    }
+}
+
 
 export const filter = (value) =>{
     return async (dispatch) => {
@@ -11,11 +24,11 @@ export const filter = (value) =>{
             const countries = data.filter((country)=>{
                 return country.continent === value;
             })
-            console.log('COUNTRIES SON... ', countries[0])
+            // console.log('COUNTRIES SON... ', countries[0])
             return dispatch({type:FILTER, payload: countries}) 
             
         } catch (error) {
-            console.log('Error en FILTER...', error);
+            window.alert('Error en action - FILTER...', error.message);
         }
     }
 
@@ -23,17 +36,28 @@ export const filter = (value) =>{
 
 export const filterActivity = (value) =>{
     return async (dispatch) => {
+
         console.log('Esto es un FilterActivity', value);
         try {
-            const {data} = await axios.get('http://localhost:3001/countries/getall'); //? Traigo todo de mi DB
+            const {data} = await axios.get('http://localhost:3001/countries/getall'); //? Traigo TODO TODO de mi DB
 
-            const countries1 = data.filter((country1)=>{
-                return country1.Activities[0]?.name;
+            console.log("action-Fill", value)
+            console.log('DAta...', data)
+            // console.log("action-", countries1[0].Activities[0].name)
+
+                        
+            const countries1 = data.filter((country1, index)=>{
+                // return country1.Activities[index]?.name === value;
+                return country1.Activities.some((activity) => activity.name === value);
             })
+
+
+
+            console.log('COUNTRIES1:: ', countries1)
             // console.log('COUNTRIES SON... ', countries1)
             return dispatch({type:FILTERACTIVITY, payload: countries1}) 
         } catch (error) {
-            console.log('Error en FILTER ACTIVITIES...', error);
+            window.alert('Error en actions.js - FILTER ACTIVITIES...', error.message);
         }
     }
 
@@ -42,13 +66,10 @@ export const filterActivity = (value) =>{
 export const order = (value) =>{
     return async (dispatch) => {
         try {
-            // console.log('Esto es un Order');
-            // if (selectOrder === 'ascendente') {
-
-            // }
+            console.log('Action - ', value);
             return dispatch({type:ORDER, payload:{value}})
         } catch (error) {
-            console.log('Error en ORDER...', error);
+            window.alert('Error en action - ORDER...', error.message);
         }
     }
 }
@@ -63,7 +84,7 @@ export const search = (textBox) =>{
 
             return dispatch({type:SEARCH, payload: oneCountry}) 
         } catch (error) {
-            console.log('Error en SEARCH... ', error);
+            window.alert('Error en action - SEARCH... ', error.message);
         }
     }
 }
@@ -76,25 +97,34 @@ export const search = (textBox) =>{
 
                     return country.idPais === idParam;
                 })
-                console.log('SSSSSSSSSSSSSSSS', oneCountry)
+                // console.log('SSSSSSSSSSSSSSSS', oneCountry)
                 return dispatch({type:SEARCH, payload: oneCountry}) 
             } catch (error) {
-                console.log('Error en SEARCH... ', error);
+                window.alert('Error en action - SEARCH... ', error.message);
             }
         }
     }
 
 export const search_all = () =>{
     return async (dispatch) => {
-        try {       
+        try {
+            console.log('Estoy en action-SEARCH-ALL!!!!!')       
             const {data} = await axios.get('http://localhost:3001/countries/home'); //? Traigo todo de mi DB
             return dispatch({type: SEARCH_ALL, payload: data});                      //? Lo despacho a data
         } catch (error) {
-            console.log('Error en SEARCH_ALL... ', error);
+            window.alert('Error en action - SEARCH_ALL... ', error.message);
         }
     } 
 }
 
+export const reset_all = () =>{
+    return async (dispatch) => {
+        try {
+            return dispatch({type: RESET});
+        } catch (error) {
+            window.alert('Error en action - RESET... ', error.message);
+            
+        }
 
-
-
+    }
+}

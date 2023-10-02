@@ -23,42 +23,22 @@ function App() {
 
   return (
     <>
+    <div className='container'> 
+      {pathname !== '/countries' && <Nav />}
+      <Routes>
+      
+        <Route path='/countries' element={ <Landing /> } />
+        <Route path='/countries/home' element={ <Home /> } />
+        <Route path='/countries/home/:id' element={ <Home /> } />
 
-    {pathname !== '/countries' && <Nav />}
-    <Routes>
-    
-      <Route path='/countries' element={ <Landing /> } />
-      <Route path='/countries/home' element={ <Home /> } />
-      <Route path='/countries/home/:id' element={ <Home /> } />
-
-      <Route path='/countries/About' element={ <About /> } />
-      <Route path='/countries/detail/:idPais' element={ <Detail /> } />
-      <Route path='/countries/form' element={ <Form /> } />
-    
-    </Routes>
+        <Route path='/countries/About' element={ <About /> } />
+        <Route path='/countries/detail/:idPais' element={ <Detail /> } />
+        <Route path='/countries/form' element={ <Form /> } />
+      
+      </Routes>
+    </div>
     </>
   )
 }
 
 export default App
-
-{/* <div>
-  <a href="https://vitejs.dev" target="_blank">
-    <img src={viteLogo} className="logo" alt="Vite logo" />
-  </a>
-  <a href="https://react.dev" target="_blank">
-    <img src={reactLogo} className="logo react" alt="React logo" />
-  </a>
-</div>
-<h1>Vite + React</h1>
-<div className="card">
-  <button onClick={() => setCount((count) => count + 1)}>
-    count is {count}
-  </button>
-  <p>
-    Edit <code>src/App.jsx</code> and save to test HMR
-  </p>
-</div>
-<p className="read-the-docs">
-  Click on the Vite and React logos to learn more
-</p> */}

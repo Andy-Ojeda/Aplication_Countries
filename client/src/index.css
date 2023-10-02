@@ -1,3 +1,5 @@
+@import './colors.module.css'
+
 :root {
   font-family: 'Mooli', sans-serif;
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
@@ -61,7 +63,10 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-image: url('../src//Planisferio.jpeg');
+    background-size: cover;
+    background-attachment: fixed;
+    /* background-color: var(--color1); */
   }
   a:hover {
     color: #747bff;

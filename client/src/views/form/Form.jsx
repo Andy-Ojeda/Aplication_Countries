@@ -3,7 +3,7 @@ import style from './Form.module.css'
 import { useState } from 'react'
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-
+// import { inicioApp } from '../../redux/actions/actions';
 
 function Form() {
   
@@ -12,6 +12,9 @@ function Form() {
   const [paises, setPaises] = useState([]) 
   const [error, setError] = useState("");
   const [errorP, setErrorP] = useState("");
+  const [errorT, setErrorT] = useState("");
+  // const [value1, setValue1] = useState([]);
+
   
   const show = useSelector((state)=>state.show);
 
@@ -24,12 +27,40 @@ function Form() {
 
   });
 
-  const handleChange = (event) => {
-      const { name, value } = event.target;
 
+
+
+
+
+
+  const handleChange = async (event) => {
+      const { name, value } = event.target;
+      
+      console.log('ERROR es...', error)
+      
       value && setError("");
+      
+      console.log('VALUE', value)
+      
       if (name === 'countryNames') {
         
+        if (paises.includes(value)){
+          console.log('PAis ya existe, borrando');
+          const pai = paises;
+          console.log('PAI...', pai)
+          let repe = await pai.filter((pais)=>pais!==value)
+          console.log('REPE...', repe)
+
+          setPaises(repe)
+          return 
+        }
+
+        
+
+
+
+
+
         setPaises([...paises, value])
       
       } else {
@@ -37,7 +68,14 @@ function Form() {
           ...formData,
           [name]: value,
         });
+        console.log('Form-Data... ', formData)
       }
+
+
+
+
+// console.log('FORM-DATA: ', formData)
+
   };
   
   const handleSubmit = async (event) => {
@@ -75,11 +113,25 @@ function Form() {
       }
 };
 
+  useEffect(()=>{
+    if (formData.name.length > 0){
+        const verif = formData.name
+        
+        verif.charAt(0) === verif.charAt(0).toUpperCase()? 
+        setErrorT('') 
+        : setErrorT('Start with a capital letter, please.')
+    }
+  }, [formData])
 
   
   useEffect(()=>{
-   setGlobalShow(show)
-   console.log('formDataINICIO...', formData);
+    const orderShow = show;
+    
+    orderShow.sort((a,b)=> a.name.localeCompare(b.name));
+    
+    setGlobalShow(orderShow)
+   
+    console.log('formDataINICIO...', formData);
 
   },[])
 
@@ -105,15 +157,17 @@ function Form() {
             <div className={style.contTextBox}>
               <label>Activity: </label>
               <input type="text" name='name' value={formData.name} placeholder='New activity...' onChange={handleChange}/>
-              {error ? <p className={style.error}>{error}</p> : <p></p>}
+              {error && <p className={style.error}>{error}</p>}
+              {errorT && <p className={style.error}>{errorT}</p>}
+
             </div>
 
             <div className={style.contCountry}>  
               
               <select name="countryNames" value={formData.countryNames} onChange={handleChange} size={10} multiple >
                 {
-                      show? globalShow.map((pais)=>{
-                        return <option key={pais.idPais} value={pais.name}> - {pais.name}</option>
+                      show? globalShow.map((pais, index)=>{
+                        return <option key={index} value={pais.name}> - {pais.name}</option>
                       })
                       : 'Cargando...'
                     }
@@ -126,11 +180,11 @@ function Form() {
                     <div>
                       
                         {
-                              paises.length === 0? <h5>Paises seleccionados...</h5>
+                              paises.length === 0? <h4>Paises seleccionados...</h4>
                               :
                               <ul>
-                                  { paises.map((pais)=>{
-                                      return <li key={pais}>{pais}</li>
+                                  { paises.map((pais, index)=>{
+                                      return <li key={index}>{pais}</li>
                                     })
                                   }
                               </ul>

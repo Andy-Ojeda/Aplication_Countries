@@ -27,9 +27,19 @@
     margin: 1em;
 }
 .centeredCard {
+    /* border: 3px solid black; */
     /* background-color: pink; */
     display: flex;
     justify-content: center;
     align-items: center;
+    /* display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
+
     height: 100%;
   }
+
+.cardShow {
+    /* border: 2px solid rgb(25, 0, 255); */
+    margin-left: 0.5em;
+    /* background-color: red; */
+}

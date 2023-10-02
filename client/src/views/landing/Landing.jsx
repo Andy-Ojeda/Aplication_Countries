@@ -2,6 +2,7 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
+import style from './Landing.module.css'
 
 function Landing() {
   const navigate = useNavigate();
@@ -26,13 +27,35 @@ function Landing() {
 
 
   return (
-    <div>
-        <h1>LANDING</h1>
-        <button type="button" onClick={()=>{
-          navigate('/countries/home');
-        }}>HOME</button>
+    <div className={style.container}>
+       <div className={style.cont}>
+          <div className={style.contTitle}>
+              <p>Countries App</p>
+          </div>
+          <div className={style.contButton}>
+              
+              
+              
+              {/* <button type="button" onClick={()=>{
+                navigate('/countries/home');
+              }}>HOME</button> */}
+              <button className={style.button} onClick={()=>{
+                navigate('/countries/home');
+              }}>
+                  <span className={style.button_lg}>
+                      <span className={style.button_sl}></span>
+                      <span className={style.button_text}>- ENTER HOME -</span>
+                  </span>
+              </button>          
+          
+          
+          
+          </div>
+      </div> 
+           
+
     </div>
   )
 }
 
-export default Landing
+export default Landing;

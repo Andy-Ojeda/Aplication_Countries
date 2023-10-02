@@ -1,30 +1,27 @@
-import {FILTER, FILTERACTIVITY, ORDER, SEARCH, SEARCH_ALL} from './actions/action_types';
-// import { useState, useSelector } from 'react';
+import {FILTER, FILTERACTIVITY, ORDER, SEARCH, SEARCH_ALL, RESET, INICIANDO} from './actions/action_types';
+
 //*  ESTADOS GLOBALES
 const initialState = {
-    // myCountries:[],     
-    // searchCountry: '', 
-    // views: "0",
-    // sorted: "",
     show:[],        //!  LO NUEVO!!!!!!!!!!!!!!
     order:'',
+    reset: 0,
+    nativeDB:[],
 }
 
 
-// const myCountries = useSelector((state)=>state.myCountries); //! LO NUEVO !!!!!!!!!!!
-
-//  ESTADOS LOCALES
-// const [all, setAll] = useState([]); //!  Acá guardo todo lo buscado!!
-
 const reducer = (state = initialState, action) =>{
     switch(action.type){    
+        case INICIANDO:
+            console.log('Reducer - Iniciando...', action.payload)
+            return {...state, nativeDB: action.payload};
+
         case SEARCH_ALL:     //? Si alguien me manda un type: SEARCHALL...
         // myCountries = action.payload
-        return {...state, show: action.payload}; //? ...guardo su payload en el estado global.
+            return {...state, show: action.payload}; //? ...guardo en el estado Global
         
         case SEARCH:
             // console.log('PAYLOAD...', action.payload);
-            return {...state, show: [action.payload]};  //! Tuve que hacerlo string para que me funcione el map del Home
+            return {...state, show: [action.payload]}; 
         
         case FILTER:
             return {...state, show: action.payload}
@@ -33,7 +30,11 @@ const reducer = (state = initialState, action) =>{
             return {...state, show: action.payload}
         
         case ORDER:
+            console.log('Reducer - ', action.payload)
             return {...state, order: action.payload}
+        
+        case RESET:
+            return {...state, reset: state.reset+1, order: 'order'}
             
         default:
             return state;
