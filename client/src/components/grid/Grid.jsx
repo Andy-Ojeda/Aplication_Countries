@@ -42,8 +42,8 @@ function Grid({}) {
         
 
         if (order.value === 'order') {
-            console.log('SHOW', show[0].name);
-            console.log('NATIVE', nativeDB[0].name)
+            // console.log('SHOW', show[0].name);
+            // console.log('NATIVE', nativeDB[0].name)
             displayCountries = nativeDB;
             // setAllCountries(nativeDB)
             // console.log('DisplayCountries...', displayCountries)
@@ -92,7 +92,7 @@ function Grid({}) {
         </div>
         <div className={style.contGrid}>
             {       //* Si la cantidad de cartas a mostrar es 1, cambio el className
-                tenCountries.length > 1 && tenCountries.length < 5 ? (
+                tenCountries.length > 0 && tenCountries.length < 5 ? (
                     <div className={style.centeredCard}>
                         {tenCountries.map((tenC) => (
                             <div className={style.cardShow}>

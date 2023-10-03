@@ -9,18 +9,21 @@ const getCountries = async (req, res) => {
     const { pais } = req.query;
     
     //* Si hay Query muestro la Query sino, sigo con lo demás...
-    if (pais) { 
-        return res.status(200).json({Mensaje: 'Mi QUERY es... ', pais}); 
-    }   
+    // if (pais) { 
+    //     return res.status(200).json({Mensaje: 'Mi QUERY es... ', pais}); 
+    // }   
 
     try {
-        const response = await axios.get(API);  //?   << <<-- AXIOS
+        // const response = await axios.get(API);  //?   << <<-- AXIOS
+        const response = await axios.get('http://localhost:5000/countries/');  //?   << <<-- AXIOS
         const apiData = response.data;
        
         console.log("Cantidad en API: ", apiData.length);
 
         const respApiData = apiToDB(apiData); //Función que guarda todo en DB
-        
+
+        console.log('APIdata...!!', respApiData)
+
         res.status(201).json(respApiData);
 
     } catch (error) {

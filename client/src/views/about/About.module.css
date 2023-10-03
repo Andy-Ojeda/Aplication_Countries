@@ -1,5 +1,84 @@
-.contenedor{
-    border: 2px solid black;
-    width: 80rem;
-    height: 50rem;
+
+@import '../../colors.module.css';
+
+
+.container {
+  /* background-color: red;
+  border: 3px solid yellow; */
 }
+
+.aboutUs{
+  height: 40rem;
+  width: 100%;
+  /* padding: 90px 0; */
+  background: var(--color1);
+  /* border: 3px solid rgb(224, 143, 29); */
+  }
+  .pic{
+    height: auto;
+    width:  302px;
+  }
+  .about{
+    width: 1130px;
+    height: 23rem;
+    max-width: 85%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* border: 3px solid pink; */
+  }
+  .text{
+    /* border: 3px solid lightcoral; */
+    width: 60rem;
+    margin-left: 0.5rem;
+    height: 20rem;
+  }
+  .text h4{
+    margin-top: 0rem;
+    /* background-color: black; */
+    font-size: 60px;
+    font-weight: 600;
+    /* margin-bottom: 10px; */
+    color: var(--color3);
+}
+.text h5{
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: -5rem;
+    /* margin-bottom: 20px; */
+    color: var(--color3);
+    /* background-color: grey; */
+  }
+
+  .text p{
+    /* background-color: blueviolet; */
+    margin-top: 0rem;
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: 1px;
+    color: var(--color4);
+    height: auto;
+    width: auto;
+  }
+  /* .data{
+    margin-top: 30px;
+  }
+  .hire{
+    font-size: 18px;
+    background: #4070f4;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    padding: 8px 25px;
+    border-radius: 6px;
+    transition: 0.5s;
+  }
+  .hire:hover{
+    background: #000;
+    border: 1px solid #4070f4;
+  } */
+  .sobreMi p{
+      font-size: 0.8rem;
+      margin-top: -1rem;
+  }

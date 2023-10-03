@@ -4,6 +4,7 @@ const {Country, Activity} = require("./src/db")
 const apiToDB = async (apiData)=> {
     
     console.log("API TO DB!!!!!!")
+    console.log("API TO DB!!", apiData[0])
     
    
 

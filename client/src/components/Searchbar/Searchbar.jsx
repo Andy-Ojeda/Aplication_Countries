@@ -31,7 +31,7 @@ function Searchbar() {
             if (!textBox) {
               console.log('Button pusheado, pero cuadro de texto VACÍO!!')
             } else {
-              
+              // console.log('SearchBar...!!', textBox)
               dispatch(search(textBox)); //! Envío el valor del "textBox"
               setTextBox('');
             }
@@ -56,13 +56,16 @@ function Searchbar() {
 
     const handleSelect = async (event) =>{
       const selectedValue = event.target.value;
+      console.log('SelectedValue...', selectedValue)
       selectedValue.toLowerCase();
+      console.log('SelectedValue111...', selectedValue)
       try {
+        // const {data} = await axios.get(`http://localhost:3001/countries/home`)
         const {data} = await axios.get(`http://localhost:3001/countries/${selectedValue}`)
         console.log('DATA ES...', data);
         const dato = data.idPais;
         // const dato1 = dato.toLowerCase();
-        navigate(`/countries/home/${dato}`);
+        navigate(`/countries/home/${dato}`);   
       } catch (error) {
         console.log('ERROR en SEARCH-BAR!!', error);
       }

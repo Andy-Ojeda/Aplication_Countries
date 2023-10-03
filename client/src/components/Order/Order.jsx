@@ -46,7 +46,7 @@ function Order() {
     <div className={style.contenedor}>
         
         <select className={style.selectOrder} name="order" value={selectedValue} onChange={handleSelect}>
-            <option value="order">Order...</option>
+            <option value="order" disabled >Order...</option>
             <option value="ascendente">Ascendente</option>
             <option value="descendente">Descendente</option>
             <option value="poblacion_asc">Población Ascendente</option>

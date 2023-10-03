@@ -11,9 +11,7 @@
     height: 36rem;
     display: flex;
     justify-content: center;
-    /* width: 1366px;
-    height: auto; */
-    /* padding-top: 8rem; */
+    /* width: 100%; */
 }
 
 .cont{
